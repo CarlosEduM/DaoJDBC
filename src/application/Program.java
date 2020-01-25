@@ -5,6 +5,8 @@
  */
 package application;
 
+import model.entities.Department;
+
 /**
  *
  * @author Cadu
@@ -16,6 +18,10 @@ public class Program {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        Department obj = new Department(1, "Computers");
+        
+        System.out.println(obj);
     }
     
 }
