@@ -18,7 +18,7 @@ import java.util.Properties;
  *
  * @author Cadu
  */
-public abstract class DB {
+public class DB {
     
     private static Connection conn = null;
     
