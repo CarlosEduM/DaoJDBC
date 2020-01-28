@@ -45,5 +45,11 @@ public class Program2 {
         depDao.insert(dep);
         
         System.out.println("Departamento criado! id: " + dep.getId());
+        
+        System.out.println("\n=== test 5: Department deleteById ===");
+        
+        depDao.deleteById(dep.getId() - 1);
+        
+        System.out.println("Departamento deletado!");
     }
 }

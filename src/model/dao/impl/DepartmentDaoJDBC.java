@@ -79,7 +79,25 @@ public class DepartmentDaoJDBC implements DepartmentDao{
 
     @Override
     public void deleteById(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PreparedStatement st = null;
+        
+        try{
+            st = conn.prepareStatement("DELETE FROM departament WHERE Id = ?");
+            
+            st.setInt(1, id);
+            
+            int rowsAffected  = st.executeUpdate();
+            
+            if(rowsAffected == 0){
+                throw new DBException("linha não existe");
+            }
+        }
+        catch(SQLException e){
+            throw new DBException(e.getMessage());
+        }
+        finally{
+            DB.closeStatement(st);
+        }
     }
 
     @Override
