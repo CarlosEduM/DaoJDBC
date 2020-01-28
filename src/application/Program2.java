@@ -27,5 +27,15 @@ public class Program2 {
         System.out.println("\n=== test 2: Department findById ===");
         
         System.out.println(depDao.findById(2));
+        
+        System.out.println("\n=== test 3: Department update ===");
+        
+        Department dep = depDao.findById(1);
+        
+        dep.setName("Computers");
+        
+        depDao.update(dep);
+        
+        System.out.println("Atualização completa");
     }
 }
