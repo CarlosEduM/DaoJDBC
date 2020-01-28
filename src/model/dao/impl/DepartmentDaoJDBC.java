@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.dao.DepartmentDao;
@@ -30,7 +31,31 @@ public class DepartmentDaoJDBC implements DepartmentDao{
     
     @Override
     public void insert(Department obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PreparedStatement st = null;
+        
+        try{
+            st = conn.prepareStatement("INSERT INTO departament (Name) VALUES (?)", Statement.RETURN_GENERATED_KEYS);
+            st.setString(1, obj.getName());
+            
+            int rowsAffected = st.executeUpdate();
+            
+            if(rowsAffected > 0){
+                ResultSet rs = st.getGeneratedKeys();
+                if(rs.next()){
+                    obj.setId(rs.getInt(1));
+                }
+                DB.closeResulSet(rs);
+            }
+            else{
+                throw new DBException("Erro inesperado nenhuma linha afetada");
+            }
+        }
+        catch(SQLException e){
+            throw new DBException(e.getMessage());
+        }
+        finally{
+            DB.closeStatement(st);
+        }
     }
 
     @Override

@@ -37,5 +37,13 @@ public class Program2 {
         depDao.update(dep);
         
         System.out.println("Atualização completa");
+        
+        System.out.println("\n=== test 4: Department inset ===");
+        
+        dep = new Department(null, "Ferramentas");
+        
+        depDao.insert(dep);
+        
+        System.out.println("Departamento criado! id: " + dep.getId());
     }
 }

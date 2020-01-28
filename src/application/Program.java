@@ -5,6 +5,7 @@
  */
 package application;
 
+import db.DB;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -71,6 +72,8 @@ public class Program {
         sellerDao.deleteById(id);
         
         System.out.println("Deletado com sucesso!");
+        
+        DB.closeConnection();
         
         sc.close();
     }
