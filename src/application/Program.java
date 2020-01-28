@@ -33,15 +33,23 @@ public class Program {
         
         System.out.println("\n=== Test 2: seller findByDepartmant ===");
         
-        List<Seller> sellerDepartment = sellerDao.findByDepartment(seller.getDepartment());
+        List<Seller> list = sellerDao.findByDepartment(seller.getDepartment());
         
-        sellerDepartment.forEach(System.out::println);
+        list.forEach(System.out::println);
         
         System.out.println("\n=== Test 3: seller findAll ===");
         
-        List<Seller> all = sellerDao.findAll();
+        list = sellerDao.findAll();
         
-        all.forEach(System.out::println);
+        list.forEach(System.out::println);
+        
+        System.out.println("\n=== Test 4: seller insert ===");
+        
+        Seller newSeller = new Seller(null, "Greg", "geg@gmail.com", new Date(), 4800.00, list.get(1).getDepartment());
+        
+        sellerDao.insert(newSeller);
+        
+        System.out.println("Adicionado! novo id: " + newSeller.getId());
     }
     
 }
