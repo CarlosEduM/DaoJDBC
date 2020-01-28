@@ -23,5 +23,9 @@ public class Program2 {
         List<Department> list = depDao.findAll();
         
         list.forEach(System.out::println);
+        
+        System.out.println("\n=== test 2: Department findById ===");
+        
+        System.out.println(depDao.findById(2));
     }
 }

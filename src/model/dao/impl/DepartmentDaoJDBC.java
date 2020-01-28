@@ -45,7 +45,27 @@ public class DepartmentDaoJDBC implements DepartmentDao{
 
     @Override
     public Department findById(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        
+        try{
+            st = this.conn.prepareStatement("SELECT * FROM coursejdbc.departament WHERE Id = ?");
+            st.setInt(1, id);
+            rs = st.executeQuery();
+            
+            if(rs.next()){
+                return this.instantiateDepartment(rs);
+            }
+            
+            return null;
+        }
+        catch(SQLException e){
+            throw new DBException(e.getMessage());
+        }
+        finally{
+            DB.closeStatement(st);
+            DB.closeResulSet(rs);
+        }
     }
 
     @Override
